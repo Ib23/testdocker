@@ -5,3 +5,11 @@ services:
 script:
   - docker build -t mannydesigns/node .
   - docker images mannydesigns/node
+
+before_deploy:
+  - docker login -u <username> -p <userpassword>  #DockerHUB credentials 
+deploy:
+  provider: script
+  script: docker push mannydesigns/node1
+  on:
+    branch: master
